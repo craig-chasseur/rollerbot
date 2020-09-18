@@ -31,7 +31,8 @@ func (d *Dice) Roll6Shadowrun(n int) string {
 	if n <= 0 {
 		return "Nothing to roll"
 	}
-
+        d.mtx.Lock()
+        defer d.mtx.Unlock()
 	if n > maxDice {
 		return "I don't have that many dice in my bag"
 	}
@@ -75,6 +76,9 @@ func (d *Dice) Roll6Shadowrun(n int) string {
 // annotation for a critical hit or miss) according to Dungeons & Dragons
 // rules.
 func (d *Dice) Roll20DnD() string {
+	d.mtx.Lock()
+	defer d.mtx.Unlock()
+
 	result := d.rng.Intn(20)
 	message := ""
 	switch result {
@@ -89,6 +93,9 @@ func (d *Dice) Roll20DnD() string {
 // Roll rolls numdice distinct dice with the specified number of sides and
 // prints the results of all the rolls, plus their sum.
 func (d *Dice) Roll(sides int, numdice int) string {
+	d.mtx.Lock()
+	defer d.mtx.Unlock()
+
 	if sides < 1 {
 		return "Impossible to roll a die with less than 1 side"
 	}
