@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-var dnd20commands = [...]string{"/roll20", "/roll20dd", "/roll20dnd"}
-
 func ref(s string) *string {
 	return &s
 }
