@@ -31,8 +31,6 @@ func (d *Dice) Roll6Shadowrun(n int) string {
 	if n <= 0 {
 		return "Nothing to roll"
 	}
-        d.mtx.Lock()
-        defer d.mtx.Unlock()
 	if n > maxDice {
 		return "I don't have that many dice in my bag"
 	}
